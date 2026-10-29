@@ -1,27 +1,59 @@
 package amanda;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Scanner;
 
 public class CriarPersonagem {
-    private static final Map<String, Personagem> mapaPersonagens = new HashMap<>();
+    private Scanner scanner;
 
-    public void adicionarPersonagem(Personagem personagem) {
-        if (personagem != null && personagem.getNome() != null && !mapaPersonagens.containsKey(personagem.getNome())) {
-            mapaPersonagens.put(personagem.getNome(), personagem);
+    public CriarPersonagem() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public Personagem criar() {
+        System.out.println("\n--- Criação de Personagem ---");
+        System.out.print("Digite o nome do personagem: ");
+        String nome = scanner.nextLine();
+
+        System.out.println("Escolha a classe do personagem:");
+        System.out.println("1. Guerreiro");
+        System.out.println("2. Mago");
+        System.out.println("3. Arqueiro");
+        System.out.print("Opção: ");
+
+        int opcao = Integer.parseInt(scanner.nextLine());
+        Classe classe;
+
+        switch (opcao) {
+            case 1:
+                classe = Classe.GUERREIRO;
+                break;
+            case 2:
+                classe = Classe.MAGO;
+                break;
+            case 3:
+                classe = Classe.ARQUEIRO;
+                break;
+            default:
+                System.out.println("Opção inválida! Definindo como Guerreiro por padrão.");
+                classe = Classe.GUERREIRO;
+                break;
         }
-    }
 
-    public Personagem getPorNome(String nome) {
-        return mapaPersonagens.get(nome);
-    }
+        System.out.print("Digite os pontos de vida (ex: 100): ");
+        double vida = Double.parseDouble(scanner.nextLine());
 
-    public Map<String, Personagem> getMapaPersonagens() {
-        return mapaPersonagens;
-    }
+        System.out.print("Digite a força (ex: 20): ");
+        double forca = Double.parseDouble(scanner.nextLine());
 
-    public Collection<Personagem> getTodosPersonagems() {
-        return mapaPersonagens.values();
+        switch (classe) {
+            case GUERREIRO:
+                return new Guerreiro(nome, 1, vida, forca, Classe.GUERREIRO);
+            case MAGO:
+                return new Mago(nome, 1, vida, forca, Classe.MAGO);
+            case ARQUEIRO:
+                return new Arqueiro(nome, 1, vida, forca, Classe.ARQUEIRO);
+            default:
+                return new Guerreiro(nome, 1, vida, forca, Classe.GUERREIRO);
+        }
     }
 }
