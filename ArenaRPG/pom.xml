@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>amanda</groupId>
-  <artifactId>hello</artifactId>
+  <artifactId>ArenaRPG</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <properties>

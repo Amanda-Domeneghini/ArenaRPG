@@ -1,4 +1,4 @@
-# hello
+# ArenaRPG
 
 Projeto Maven criado automaticamente com Java 25 e JUnit 5.
 
